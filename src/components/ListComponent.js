@@ -1,7 +1,8 @@
 import React from 'react'
 import {View, Text, FlatList, StyleSheet, Image} from 'react-native'
 import moment from 'moment'
-
+import FlipCard from 'react-native-flip-card'
+const PLACEHOLDER_IMAGE = 'https://i.kym-cdn.com/entries/icons/original/000/001/030/DButt.jpg'
 const ListComponent = ({movies, lol}: Array) => {
   return (
     <View style={styles.container}>
@@ -15,15 +16,23 @@ const ListComponent = ({movies, lol}: Array) => {
 }
 
 const ListItem = ({item}: Object) => {
-  console.log(item.image)
   return (
-    <View style={styles.item}>
-      <Text style={styles.listItem}>{item.title}</Text>
-      <Text style={styles.listItem}>{item.year}</Text>
-      <Text style={styles.listItem}>{item.phrase}</Text>
-      <Text style={styles.listItem}>{moment(item.time).format('HH:mm:ss')}</Text>
-      <Image source={!item.image ? { uri: 'https://i.kym-cdn.com/entries/icons/original/000/001/030/DButt.jpg'} : {uri: item.image}} style={styles.image} />
-    </View>
+    <FlipCard>
+      <View style={styles.item}>
+        <Text style={styles.listItem}>{item.title}</Text>
+        <Text style={styles.listItem}>{item.year}</Text>
+        <Text style={styles.listItem}>{item.phrase}</Text>
+        <Text style={styles.listItem}>{moment(item.time).format('HH:mm:ss')}</Text>
+        <Image source={!item.image ? { uri: PLACEHOLDER_IMAGE} : {uri: item.image}} style={styles.image} />
+      </View>
+      <View style={styles.item}>
+        <Text style={styles.listItem}>{item.title}</Text>
+        <Text style={styles.listItem}>{item.year}</Text>
+        <Text style={styles.listItem}>{item.phrase}</Text>
+        <Text style={styles.listItem}>{moment(item.time).format('HH:mm:ss')}</Text>
+        <Image source={!item.image ? { uri: PLACEHOLDER_IMAGE } : { uri: item.image }} style={styles.image} />
+      </View>
+    </FlipCard>
   )
 }
 
@@ -32,7 +41,7 @@ const keyExtractor = (item, index) => index.toString()
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+
     flexDirection: 'column'
   },
   item: {
@@ -47,6 +56,9 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   image: {
+    margin: 10,
+    alignSelf: 'center',
+    borderRadius: 20,
     height: 200,
     width: 200
   }

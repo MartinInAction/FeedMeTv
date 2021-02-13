@@ -48,12 +48,11 @@ const isNative = Platform.OS !== 'web'
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: isNative ? 50 : undefined,
+    overflow: 'auto',
+    paddingTop: isNative ? 50 : 0,
     flexGrow: 1,
     height: isNative ? '100%' : '100vh',
-    backgroundColor: 'black',
-    justifyContent: 'center',
-    alignItems: 'center'
+    backgroundColor: 'black'
   },
   text: {
     color: 'white',
