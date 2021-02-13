@@ -12,10 +12,10 @@ import StartContainer from './components/StartContainer'
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.scrollView}>
+    <View style={styles.scrollView}>
       <StatusBar barStyle={'dark-content'} />
       <StartContainer />
-    </SafeAreaView>
+    </View>
   )
 }
 
