@@ -8,6 +8,18 @@ export let searchSubtitle = (query: string) => {
 
 export let searchQuote = (query: string) => {
   return sendRequest(QUOTE_API_URL,`/feedmetv/${encodeURI(query)}`, {method: 'GET'})
+    .then((res) => {
+      let {docs} = res
+      docs = docs.reduce((a, b) => {
+        if (a.title === b.title) {
+          if (!a.moreData) a.moreData = [b]
+          a.moreData.push(b)
+        }
+      })
+      return docs.map((movie) => {
+        return {...movie, image: !movie.image ? undefined : `${QUOTE_STATIC_URL}/${movie.image}`}
+      })
+    })
 }
 
 export let sendRequest = (apiUrl: string, endpoint: string, options: Object) => {
